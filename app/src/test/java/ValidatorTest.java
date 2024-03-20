@@ -1,4 +1,4 @@
-import hexlet.code.schemas.Validator;
+import hexlet.code.Validator;
 import org.junit.jupiter.api.Test;
 import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
