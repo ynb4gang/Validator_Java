@@ -1,37 +1,40 @@
 package hexlet.code.schemas;
 
 public class NumberSchema extends BaseSchema<Integer> {
-    private Integer minRange = null;
-    private Integer maxRange = null;
+    private Integer minRangeValue = null;
+    private Integer maxRangeValue = null;
 
     public NumberSchema minRange(int minRange) {
-        this.minRange = minRange;
+        this.minRangeValue = minRange;
         return this;
     }
 
     public NumberSchema maxRange(int maxRange) {
-        this.maxRange = maxRange;
+        this.maxRangeValue = maxRange;
         return this;
     }
+
     public NumberSchema positive() {
         return minRange(1);
     }
+
     public NumberSchema range(int min, int max) {
         minRange(min);
         maxRange(max);
         return this;
     }
+
     @Override
     public boolean isValid(Integer value) {
         if (required && value == null) {
             return false;
         }
 
-        if (minRange != null && value != null && value < minRange) {
+        if (minRangeValue != null && value != null && value < minRangeValue) {
             return false;
         }
 
-        if (maxRange != null && value != null && value > maxRange) {
+        if (maxRangeValue != null && value != null && value > maxRangeValue) {
             return false;
         }
 

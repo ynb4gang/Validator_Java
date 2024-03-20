@@ -1,16 +1,16 @@
 package hexlet.code.schemas;
 
 public class StringSchema extends BaseSchema<String> {
-    private Integer minLength = null;
-    private String contains = null;
+    private Integer minLengthValue = null;
+    private String containsValue = null;
 
     public StringSchema minLength(int minLength) {
-        this.minLength = minLength;
+        this.minLengthValue = minLength;
         return this;
     }
 
     public StringSchema contains(String contains) {
-        this.contains = contains;
+        this.containsValue = contains;
         return this;
     }
 
@@ -20,14 +20,15 @@ public class StringSchema extends BaseSchema<String> {
             return false;
         }
 
-        if (minLength != null && value != null && value.length() < minLength) {
+        if (minLengthValue != null && value != null && value.length() < minLengthValue) {
             return false;
         }
 
-        if (contains != null && value != null && !value.contains(contains)) {
+        if (containsValue != null && value != null && !value.contains(containsValue)) {
             return false;
         }
 
         return true;
     }
 }
+
