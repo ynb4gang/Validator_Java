@@ -1,4 +1,4 @@
-package schemas;
+package hexlet.code.schemas;
 
 public abstract class BaseSchema<T> {
     protected boolean required = false;

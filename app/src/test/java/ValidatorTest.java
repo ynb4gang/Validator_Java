@@ -1,7 +1,8 @@
+import hexlet.code.schemas.Validator;
 import org.junit.jupiter.api.Test;
-import schemas.MapSchema;
-import schemas.NumberSchema;
-import schemas.StringSchema;
+import hexlet.code.schemas.MapSchema;
+import hexlet.code.schemas.NumberSchema;
+import hexlet.code.schemas.StringSchema;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,57 +31,52 @@ class ValidatorTest {
 
         assertFalse(schema.isValid("what does the fox say"));
     }
-}
-
-class NumberSchemaTest {
     @Test
     void testNumberSchemaValidation() {
         Validator v = new Validator();
         NumberSchema schema = v.number();
 
-        assertTrue(schema.isValid(null)); // null валиден, так как не вызывался required
-        assertTrue(schema.isValid(5)); // без ограничений, валидное число
+        assertTrue(schema.isValid(null));
+        assertTrue(schema.isValid(5));
 
         schema.required();
 
-        assertFalse(schema.isValid(null)); // null не валиден из-за required
-        assertTrue(schema.isValid(10)); // валидное число
+        assertFalse(schema.isValid(null));
+        assertTrue(schema.isValid(10));
 
         schema.positive();
 
-        assertFalse(schema.isValid(-10)); // не положительное число
-        assertFalse(schema.isValid(0)); // не положительное число
-        assertTrue(schema.isValid(5)); // положительное число
+        assertFalse(schema.isValid(-10));
+        assertFalse(schema.isValid(0));
+        assertTrue(schema.isValid(5));
 
         schema.range(5, 10);
 
-        assertTrue(schema.isValid(5)); // в диапазоне
-        assertTrue(schema.isValid(10)); // в диапазоне
-        assertFalse(schema.isValid(4)); // ниже диапазона
-        assertFalse(schema.isValid(11)); // выше диапазона
+        assertTrue(schema.isValid(5));
+        assertTrue(schema.isValid(10));
+        assertFalse(schema.isValid(4));
+        assertFalse(schema.isValid(11));
     }
-}
-class MapSchemaTest {
     @Test
     void testMapSchemaValidation() {
         Validator v = new Validator();
         MapSchema schema = v.map();
 
-        assertTrue(schema.isValid(null)); // null валиден, так как не вызывался required
+        assertTrue(schema.isValid(null));
 
         schema.required();
 
-        assertFalse(schema.isValid(null)); // null не валиден из-за required
-        assertTrue(schema.isValid(new HashMap<>())); // пустая Map валидна
+        assertFalse(schema.isValid(null));
+        assertTrue(schema.isValid(new HashMap<>()));
 
         Map<String, String> data = new HashMap<>();
         data.put("key1", "value1");
-        assertTrue(schema.isValid(data)); // непустая Map валидна
+        assertTrue(schema.isValid(data));
 
         schema.sizeof(2);
 
-        assertFalse(schema.isValid(data)); // размер Map не соответствует ожидаемому
+        assertFalse(schema.isValid(data));
         data.put("key2", "value2");
-        assertTrue(schema.isValid(data)); // размер Map соответствует ожидаемому
+        assertTrue(schema.isValid(data));
     }
 }
