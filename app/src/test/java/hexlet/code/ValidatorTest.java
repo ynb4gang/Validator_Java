@@ -1,3 +1,5 @@
+package hexlet.code;
+
 import hexlet.code.Validator;
 import org.junit.jupiter.api.Test;
 import hexlet.code.schemas.MapSchema;
