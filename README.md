@@ -2,6 +2,7 @@
 [![Actions Status](https://github.com/ynb4gang/java-project-78/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ynb4gang/java-project-78/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c24f7f672b43608735f8/maintainability)](https://codeclimate.com/github/ynb4gang/java-project-78/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c24f7f672b43608735f8/test_coverage)](https://codeclimate.com/github/ynb4gang/java-project-78/test_coverage)
+[![Github Actions](https://github.com/ynb4gang/java-project-78/actions/workflows/main.yml/badge.svg)](https://github.com/ynb4gang/java-project-78/actions/workflows/main.yml)
 # Валидатор Java
 
 Этот проект представляет собой простой валидатор для проверки строк, чисел и объектов типа Map в Java.
