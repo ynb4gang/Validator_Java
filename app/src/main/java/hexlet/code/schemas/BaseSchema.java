@@ -1,44 +1,23 @@
 package hexlet.code.schemas;
 
-/**
- * BaseSchema class provides a base for defining validation schemas.
- *
- * @param <T> the type of value to be validated
- */
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
+
 public abstract class BaseSchema<T> {
-    protected boolean required = false;
-    /**
-     * Sets the schema as required.
-     *
-     * @return the schema instance
-     */
-    public BaseSchema<T> required() {
-        required = true;
-        return this;
+    private final Map<String, Predicate<T>> validityChecks;
+
+    protected BaseSchema() {
+        this.validityChecks = new HashMap<>();
     }
-    /**
-     * Validates the given value according to the schema rules.
-     *
-     * @param value the value to be validated
-     * @return true if the value is valid, otherwise false
-     */
-    public abstract boolean isValid(T value);
-    /**
-     * Sets the minimum length for the value.
-     *
-     * @param minLength the minimum length for the value
-     * @return the current schema instance
-     */
-    public BaseSchema<T> minLength(int minLength) {
-        return this;
+
+    public final void addCheck(String typeValidation, Predicate<T> method) {
+        validityChecks.put(typeValidation, method);
     }
-    /**
-     * Checks if the value contains the specified substring.
-     *
-     * @param substring the substring to check
-     * @return the current schema instance
-     */
-    public BaseSchema<T> contains(String substring) {
-        return this;
+
+    public final boolean isValid(T object) {
+        return validityChecks.values()
+                .stream()
+                .allMatch(check -> check.test(object));
     }
 }
